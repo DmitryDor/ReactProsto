@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import Accordion from "./components/Accordion/Accordion";
-import Rating from "./components/Rating/Rating";
+import Rating, {RatingValueType} from "./components/Rating/Rating";
 import OnOff from "./components/onOff/OnOff";
+import Accordion from "./components/Accordion/Accordion";
+import UnControlledOnOff from "./components/onOff/UnControlledOnOff";
 import UnControlledAccordion from "./components/Accordion/UnControlledAccordion";
-import UnControlledRating from "./components/Rating/UnContrlledRating";
 
 // function daclaration
 
@@ -12,34 +12,17 @@ function App() {
     // что-то полезное делает по необходимости
     // обязана вернуть JSX
     console.log("App rendering")
+    let [ratingValue, setRatingValue] = useState<RatingValueType>(4)
+    let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
+    let [switchOn, setSwitchOn] = useState<boolean>(false)
+
     return (
         <div className="App">
-            <OnOff/>
-            <OnOff/>
-            <OnOff/>
-
-            {/*<Accordion title={"Menu"} collapsed={true}/>*/}
-            <UnControlledAccordion title={"Dimon"}/>
-            <UnControlledAccordion title={"Molodec"}/>
-            <UnControlledRating/>
-            <Rating value={3}/>
-            <Accordion collapsed={false} title={"Menu"}/>
-            {/* <PageTitle title={"This is App component"}/>
-            <PageTitle title={"My friends"}/>
-            Article 1
-            <Rating value={3}/>
-            <Accordion title={"Menu"} collapsed={true}/>
-            <Accordion title={"Users"} collapsed={false}/>
-            Article 2
-            <Rating value={0}/>
-            <Rating value={1}/>
-            <Rating value={2}/>
-            <Rating value={3}/>
-            <Rating value={4}/>
-            <Rating value={5}/>*/}
-
-            {/* <OnOff on={true} />
-            <OnOff on={false} />*/}
+            <UnControlledOnOff onChange={setSwitchOn}/> { switchOn.toString() }
+            <UnControlledAccordion title={"Dimonnnnn"}/>
+            {/*<OnOff on={switchOn} onChange={ setSwitchOn} />*/}
+            {/*<Accordion title={"Menu"} collapsed={accordionCollapsed} onChange={() => {setAccordionCollapsed(!accordionCollapsed)}}/>
+            <Rating value={ratingValue} onClick={setRatingValue}/>*/}
         </div>
     );
 }
